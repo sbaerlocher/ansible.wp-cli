@@ -4,6 +4,7 @@ galaxy_info:
   description: Install WP-CLI, a command line interface for WordPress.
   license: license (MIT)
   min_ansible_version: 1.2
+  platforms:
   - name: GenericLinux
     versions:
     - all

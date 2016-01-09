@@ -1,4 +1,4 @@
-# ansible.wp-cli
+# Ansible Role: WP-CLI
 
 ## Description
 

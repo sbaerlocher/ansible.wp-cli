@@ -1,7 +1,10 @@
 ---
 # tasks file for sbaerlocher.wp-cli
-- name: "Install WP-CLI"
+- name: "install WP-CLI"
   get_url:
     url: "{{ wp_cli_phar_url }}"
     dest: "{{ wp_cli_bin_path }}"
+    force: true
+    owner: root
+    group: root
     mode: 0755

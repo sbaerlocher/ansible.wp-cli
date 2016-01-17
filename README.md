@@ -16,19 +16,10 @@ None
 
 ## Role Variables
 
-All available variables and default values are listed below. You may override these in your Playbook, `group_vars`, command line etc.
-
-```yml
-wp_cli_phar_url: https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-```
-
-Location of the WP-CLI phar to download.
-
-```yml
-wp_cli_bin_path: /usr/bin/wp
-```
-
-Location to store WP-CLI on remote machine.
+| Variable             | Default     | Comments (type)                                   |
+| :---                 | :---        | :---                                              |
+| ``` wp_cli_phar_url```| ``` https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar``` | Location of the WP-CLI phar to download |
+| ```wp_cli_bin_path``` | ```/usr/bin/wp``` | Location to store WP-CLI on remote machine |
 
 ## Dependencies
 

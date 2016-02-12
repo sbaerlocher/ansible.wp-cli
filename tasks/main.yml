@@ -1,6 +1,6 @@
 ---
 # tasks file for sbaerlocher.wp-cli
-- name: "install WP-CLI"
+- name: Install WP-CLI
   get_url:
     url: "{{ wp_cli_phar_url }}"
     dest: "{{ wp_cli_bin_path }}"

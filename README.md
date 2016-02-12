@@ -42,6 +42,7 @@ None
 ### 1.1
 
 * add travis
+* fix travis problems
 
 ## Author
 

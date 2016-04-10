@@ -1,4 +1,5 @@
 # Ansible Role: WP-CLI
+[![Build Status](https://travis-ci.org/sbaerlocher/ansible.wp-cli.svg?branch=master)](https://travis-ci.org/sbaerlocher/ansible.wp-cli)
 
 ## Description
 

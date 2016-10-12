@@ -8,3 +8,11 @@
     owner: root
     group: root
     mode: 0755
+
+- name: Install WP-CLI Packets
+  command: "{{ wp_cli_bin_command }} package install {{ item }}"
+  register: command_result
+  changed_when: "'Installing package' in command_result.stdout"
+  when: item is defined
+  with_items:
+    - "{{ wp_cli_package }}"

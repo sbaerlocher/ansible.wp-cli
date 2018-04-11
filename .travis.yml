@@ -2,42 +2,41 @@
 language: python
 python: "2.7"
 
-before_install:
-  - sudo apt-get update -qq
+# Use the new container infrastructure
+sudo: false
 
-  # Remove PHP
-  - sudo apt-get remove --purge 'php*'
-  - sudo apt-get autoremove
-  - sudo apt-get autoclean
-
-  # Remove WP CLI
-  - sudo rm -f /usr/bin/wp
+# Install ansible
+addons:
+  apt:
+    packages:
+      - python-pip
 
 install:
-  # Install Ansible
+  # Install ansible
   - pip install ansible
-  - sudo apt-get install php5-cli
 
-  # Add ansible.cfg to pick up roles path.
-  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+  # Install ansible-lint
+  - pip install ansible-lint
+
+  # Install yamllint
+  - pip install yamllint
+
+before_script:
+  # Check ansible version
+  - ansible --version
+
+  # Check ansible-lint version
+  - ansible-lint --version
+
+  # Check ansible-lint version
+  - yamllint --version
 
 script:
-  # Check test playbook syntax
-  - "ansible-playbook -i tests/inventory tests/playbook.yml --syntax-check"
+  # Ansible Lint check
+  - ansible-lint .
 
-  # Run the test playbook
-  - "ansible-playbook -i tests/inventory tests/playbook.yml --connection=local --sudo"
+  # YAML Lint check
+  - yamllint .
 
-  # Run the test playbook again to test it idempotent
-  - >
-    ansible-playbook -i tests/inventory tests/playbook.yml --connection=local --sudo
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
-  
-  # Test Composer is installed
-  - >
-    wp cli version
-    | grep -q 'WP-CLI'
-    && (echo 'WP-CLI install successful' && exit 0)
-    || (echo 'WP-CLI install failed' && exit 1)  
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
